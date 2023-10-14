@@ -25,7 +25,7 @@ public class Motor {
         motor.set(ControlMode.PercentOutput, Math.max(-1.0, Math.min(1.0, power)));
     }
 
-    public double getEncoderPosition(){
+    public double getMotorPosition(){
         // return the current tick value of the motor (a Falcon 500 has 2048 ticks)
         return motor.getSelectedSensorPosition(); // (any value from 0-2058)
     }
