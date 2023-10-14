@@ -5,6 +5,7 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -21,6 +22,7 @@ public class Robot extends TimedRobot {
   private final SendableChooser<String> m_chooser = new SendableChooser<>();
 
   private Motor motor;
+  private XboxController gamepad;
 
   /**
    * This function is run when the robot is first started up and should be used for any
@@ -33,6 +35,7 @@ public class Robot extends TimedRobot {
     SmartDashboard.putData("Auto choices", m_chooser);
 
     motor = new Motor();
+    gamepad = new XboxController(0);
   }
 
   /**
@@ -83,7 +86,7 @@ public class Robot extends TimedRobot {
   /** This function is called periodically during operator control. */
   @Override
   public void teleopPeriodic() {
-    motor.spinMotor(0.1); // set to 10% power (try changing this value!)
+    motor.spinMotor(gamepad.getLeftY()); // set to 10% power (try changing this value!)
   }
 
   /** This function is called once when the robot is disabled. */
