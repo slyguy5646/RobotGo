@@ -22,7 +22,7 @@ public class Motor {
 
     public void spinMotor(double power) {
         // spin the motor at the given power (making sure the value does not exceed 1.0 and doesn't go below -1.0)
-        motor.set(ControlMode.PercentOutput, Math.max(-1.0, Math.min(1.0, power)));
+        motor.set(ControlMode.PercentOutput, power);
     }
 
     public double getMotorPosition(){
