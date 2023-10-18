@@ -85,7 +85,7 @@ public class Robot extends TimedRobot {
   /** This function is called periodically during operator control. */
   @Override
   public void teleopPeriodic() {
-    drive.drive(gamepad.getRightY(), gamepad.getLeftY());
+    drive.drive(gamepad.getRightY()*0.25, gamepad.getLeftY()*0.25);
   }
 
   /** This function is called once when the robot is disabled. */
