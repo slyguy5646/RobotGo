@@ -18,6 +18,14 @@ public class Drivetrain {
     public Drivetrain() {
         leftFront = new WPI_TalonFX(LEFT_FRONT_CAN_ID);
         leftBack = new WPI_TalonFX(LEFT_BACK_CAN_ID);
+        rightFront = new WPI_TalonFX(RIGHT_FRONT_CAN_ID);
+        rightBack = new WPI_TalonFX(RIGHT_BACK_CAN_ID);
+
+        // config Factory Default
+        leftFront.configFactoryDefault();
+        leftBack.configFactoryDefault();
+        rightFront.configFactoryDefault();
+        rightBack.configFactoryDefault();
 
         // invert because the left side
         leftFront.setInverted(true);
@@ -25,10 +33,8 @@ public class Drivetrain {
 
         // do the same as the front motor
         leftBack.follow(leftFront);
-
-        rightFront = new WPI_TalonFX(RIGHT_FRONT_CAN_ID);
-        rightBack = new WPI_TalonFX(RIGHT_BACK_CAN_ID);
-
+        
+        // do the same as the front motor
         rightBack.follow(rightFront);
     }
 
