@@ -21,7 +21,7 @@ public class Robot extends TimedRobot {
   private String m_autoSelected;
   private final SendableChooser<String> m_chooser = new SendableChooser<>();
 
-  private Motor motor;
+  private Launcher motor;
   private XboxController gamepad;
 
   /**
@@ -34,7 +34,7 @@ public class Robot extends TimedRobot {
     m_chooser.addOption("My Auto", kCustomAuto);
     SmartDashboard.putData("Auto choices", m_chooser);
 
-    motor = new Motor();
+    motor = new Launcher();
     gamepad = new XboxController(0);
   }
 
@@ -46,7 +46,10 @@ public class Robot extends TimedRobot {
    * SmartDashboard integrated updating.
    */
   @Override
-  public void robotPeriodic() {}
+  public void robotPeriodic() {
+    SmartDashboard.putNumber("RIGHT MOTOR Position", motor.getMotorPosition());
+    System.out.println(motor.getMotorPosition());
+  }
 
   /**
    * This autonomous (along with the chooser code above) shows how to select between different
@@ -86,7 +89,12 @@ public class Robot extends TimedRobot {
   /** This function is called periodically during operator control. */
   @Override
   public void teleopPeriodic() {
-    motor.spinMotor(gamepad.getLeftY()); // set to 10% power (try changing this value!)
+    if (gamepad.getAButtonPressed()){
+      motor.setHigh();
+    }else if (gamepad.getBButtonPressed()){
+      motor.setLow();
+    }
+    // motor.setMotor(gamepad.getLeftY()); // set to 10% power (try changing this value!)
   }
 
   /** This function is called once when the robot is disabled. */
